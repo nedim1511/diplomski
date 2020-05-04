@@ -1,0 +1,74 @@
+<div class="sophia-app" id="mainDIV" style="height: 100vh; overflow: auto;">
+  <mat-sidenav-container fullscreen>
+    <mat-sidenav [opened]="false" mode="over" #start class="sidenav">
+      <button
+        mat-icon-button
+        color="warn"
+        class="close"
+        (click)="start.close()"
+      >
+        <mat-icon color="warn">close</mat-icon>
+      </button>
+      <div class="divider"></div>
+      <div class="sidebar-items" fxLayout="column">
+        <app-sidebar *ngFor="let item of navItems" [item]="item"></app-sidebar>
+      </div>
+    </mat-sidenav>
+    <mat-toolbar class="main-topbar">
+      <mat-toolbar-row
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="top-bar container"
+      >
+        <span fxHide="false" fxHide.gt-sm>
+          <button mat-icon-button (click)="start.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </span>
+        <div fxLayout="row" class="welcome-message">
+          <div class="info-text-phone">
+            <p>Helpline:</p>
+            <span>02(981)336 222</span>
+          </div>
+        </div>
+        <div class="widgets-left" fxLayout="row">
+          <div class="widget-text">
+            <a
+              fxShow="false"
+              fxShow.gt-xs
+              [routerLink]="['/pages/wishlist']"
+              routerLinkActive="router-link-active"
+              ><mat-icon class="mat-icon-lg mat-icon material-icons mr-10"
+                >favorite_border</mat-icon
+              >
+              WISHLIST</a
+            >
+          </div>
+          <div class="widget-text">
+            <a
+              fxShow="false"
+              fxShow.gt-xs
+              [routerLink]="['/pages/compare']"
+              routerLinkActive="router-link-active"
+              ><mat-icon>cached</mat-icon>COMPARE</a
+            >
+          </div>
+          <div class="widget-text">
+            <a
+              fxShow="false"
+              fxShow.gt-xs
+              [routerLink]="['/pages/my-account']"
+              routerLinkActive="router-link-active"
+              ><mat-icon>person</mat-icon>ACCOUNT</a
+            >
+          </div>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <app-header></app-header>
+    <ngx-spinner></ngx-spinner>
+
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </mat-sidenav-container>
+</div>
