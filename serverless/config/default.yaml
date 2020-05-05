@@ -1,0 +1,3 @@
+stripe:
+    test_sk:            'sk_test_hafQPli8Fq85ie3w6iDYKUiv00L7PUtF7z'
+    live_sk:            'sk_live_XXXXXXXXXXXXXXXXXXXXXXXX'
