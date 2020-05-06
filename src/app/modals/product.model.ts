@@ -1,67 +1,60 @@
-// Product Tag
-export type ProductTags = 'nike' | 'puma' | 'lifestyle' | 'caprese';
-
-// Product Colors
-export type ProductColor = 'white' | 'black' | 'red' | 'green' | 'purple' | 'yellow' | 'blue' | 'gray' | 'orange' | 'pink';
-
-
-
 export class Product {
-  id?: number;
-  name?: string;
-  price?: number;
-  salePrice?: number;
-  discount?: number;
-  pictures?: Array<any>;
-  small?: Array<string>;
-  shortDetails?: string;
+  id?: string;
+  object?: string;
+  active?: boolean;
+  attributes?: string[];
+  caption?: string;
+  created?: number;
   description?: string;
-  stock?: number;
-  newPro?: boolean;
-  brand?: string;
-  sale?: boolean;
-  category?: string;
-  tags?: ProductTags[];
-  colors?: ProductColor[];
+  images?: string[];
+  livemode?: boolean;
+  metadata?: any;
+  name?: string;
+  package_dimensions?: any;
+  shippable?: boolean;
+  type?: string;
+  updated?: number;
+  url?: string;
 
   constructor(
-    id?: number,
-    name?: string,
-    price?: number,
-    salePrice?: number,
-    discount?: number,
-    pictures?: Array<any>,
-    small?: Array<string>,
-    shortDetails?: string,
+    id?: string,
+    object?: string,
+    active?: boolean,
+    attributes?: string[],
+    caption?: string,
+    created?: number,
     description?: string,
-    stock?: number,
-    newPro?: boolean,
-    brand?: string,
-    sale?: boolean,
-    category?: string,
-    tags?: ProductTags[],
-    colors?: ProductColor[]
+    images?: string[],
+    livemode?: boolean,
+    metadata?: any,
+    name?: string,
+    package_dimensions?: any,
+    shippable?: boolean,
+    type?: string,
+    updated?: number,
+    url?: string
   ) {
     this.id = id;
-    this.name = name;
-    this.price = price;
-    this.salePrice = salePrice;
-    this.discount = discount;
-    this.pictures = pictures;
-    this.shortDetails = shortDetails;
+    this.object = object;
+    this.active = active;
+    this.attributes = attributes;
+    this.caption = caption;
+    this.created = created;
     this.description = description;
-    this.stock = stock;
-    this.newPro = newPro;
-    this.brand = brand;
-    this.sale = sale;
-    this.category = category;
-    this.tags = tags;
-    this.colors = colors;
-    this.small = small;
+    this.images = images;
+    this.livemode = livemode;
+    this.metadata = metadata;
+    this.name = name;
+    this.package_dimensions = package_dimensions;
+    this.shippable = shippable;
+    this.type = type;
+    this.updated = updated;
+    this.url = url;
   }
+}
 
- }
-  // Color Filter
-  export interface ColorFilter {
-    color?: ProductColor;
-  }
+export class ProductResponseModel {
+  constructor(
+    public data?: Product[]
+  ) {}
+}

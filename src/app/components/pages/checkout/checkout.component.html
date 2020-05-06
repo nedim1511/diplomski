@@ -84,9 +84,6 @@
                   <ul class="price-list" *ngIf='buyProducts.length'>
                     <li *ngFor="let item of buyProducts">
                        {{ item.product.name }} × {{ item.quantity }}
-                      <span>
-                       {{ item.product.price * item.quantity | currency:productService?.currency:'symbol' }}
-                        </span>
                     </li>
                 </ul>
                 <ul class="quantity" *ngIf='buyProducts.length <= 0'>
@@ -94,7 +91,7 @@
                  </ul>
                 <ul class="total-amount">
                   <li>
-                    Subtotal <span class="amount">{{ getTotal() | async | currency:productService?.currency:'symbol'}}</span>
+                    Subtotal <span class="amount">{{ getTotal() }} KM</span>
                   </li>
                   <li *ngIf='buyProducts.length'>
                     Shipping
@@ -109,7 +106,7 @@
                   </li>
               </ul>
               <ul class="total">
-                <li>Total <span class="count">{{ getTotal() | async | currency:productService?.currency:'symbol'}}</span></li>
+                <li>Total <span class="count">{{ getTotal() }} KM</span></li>
             </ul>
             <div class="paymentFinal">
               <mat-radio-group>

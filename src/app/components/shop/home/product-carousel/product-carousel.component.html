@@ -1,10 +1,10 @@
     <div class="product-item swiper-container" [swiper]="config" >
-        <div class="swiper-wrapper h-100">
+        <div class="swiper-wrapper h-100" *ngIf="product">
             <div *ngFor="let product of product" class="swiper-slide">
                 <mat-card fxLayout="column">
                     <div class="product-img">
                         <a class="product-link" [routerLink]="['/home/product', product.id]">
-                          <img [src]="product.pictures[0].big" alt="">
+                          <img [src]="product.images[0]" alt="">
                        </a>
                     </div>
                      <div class="product-info-wrapper">
@@ -21,7 +21,7 @@
                                 <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
                                 <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
                              </div>
-                         <p>${{product.price | number : '1.2-2'}}</p>
+                         <p>{{product.caption}}</p>
                         </div>
                         <div class="btn-wrap" fxLayout="row" fxLayoutAlign="space-between center">
                             <a (click)="addToCart(product)">ADD TO CART <mat-icon class="mat-icon-lg mat-icon material-icons">shopping_cart</mat-icon></a>

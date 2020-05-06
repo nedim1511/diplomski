@@ -20,13 +20,12 @@
               <div class="mat-header-cell">Name</div>
               <div class="mat-header-cell">Price</div>
               <div class="mat-header-cell">Quantity</div>
-              <div class="mat-header-cell">Total</div>
               <div class="mat-header-cell">Action</div>
            </div>
            <div *ngFor="let item of shoppingCartItems; let i = index"  class="mat-row">
-              <div class="mat-cell"><img [src]="item.product.pictures[0].small"></div>
+              <div class="mat-cell"><img [src]="item.product.images[0]"></div>
               <div class="mat-cell"><a  class="product-name">{{item.product.name}}</a></div>
-              <div class="mat-cell price">{{item.product.price | number : '1.2-2'}}</div>
+              <div class="mat-cell price">{{item.product.caption}}</div>
               <div class="mat-cell text-muted">
                  <div fxLayout="row" fxLayout.xs="column"  class="text-muted">
                     <div fxLayout="row" fxLayoutAlign="center start">
@@ -46,7 +45,6 @@
                        </div> -->
                  </div>
               </div>
-              <div class="mat-cell total">{{item.product.price * item.quantity | number : '1.2-2' }}</div>
               <div class="mat-cell text-center">
                  <div class="p-1">
                     <mat-icon (click)="removeItem(item)">close</mat-icon>
@@ -59,7 +57,7 @@
               <div class="mat-cell"></div>
               <div class="mat-cell text-right">
                  <div fxLayout="column" fxLayoutAlign="center end" class="grand-total px-2">
-                    <span class="new-price">Grand total: {{getTotal()  | async | currency:productsService?.currency:'symbol'}}</span>
+                    <span class="new-price">Grand total: {{total}} KM</span>
                  </div>
               </div>
               <div class="mat-cell text-center"><a mat-raised-button  class="btn-project" [routerLink]="['/pages/checkout']" routerLinkActive="router-link-active" >Proceed To Checkout</a></div>

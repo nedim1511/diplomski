@@ -94,7 +94,7 @@ public removeFromCart(item: CartItem) {
 public getTotalAmount(): Observable<number> {
   return this.cartItems.pipe(map((product: CartItem[]) => {
     return products.reduce((prev, curr: CartItem) => {
-      return prev + curr.product.price * curr.quantity;
+      return prev + +(curr.product.caption.slice(0, 6).replace(",", "")) * curr.quantity;
     }, 0);
   }));
 }

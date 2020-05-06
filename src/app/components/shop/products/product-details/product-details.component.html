@@ -1,4 +1,4 @@
-<div class="container" id="mainDIV">
+<div class="container" id="mainDIV" *ngIf="product">
   <div class="main-details-wrap">
     <div class="details-wrapper sec-padding" *ngIf="product">
       <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="80">
@@ -20,7 +20,7 @@
                 <button mat-icon-button fxHide="false" fxHide.gt-md>
                   <mat-icon>fullscreen</mat-icon>
                 </button>
-                <img [src]="product.pictures[bigProductImageIndex].big" />
+                <img [src]="product.images[bigProductImageIndex]" />
               </div>
               <a (click)="openProductDialog(product, bigProductImageIndex)"
                 ><mat-icon>zoom_in</mat-icon></a
@@ -31,11 +31,11 @@
               <div class="swiper-container" [swiper]="config">
                 <div class="swiper-wrapper">
                   <div
-                    *ngFor="let image of product?.pictures; let i = index"
+                    *ngFor="let image of product?.images; let i = index"
                     class="swiper-slide"
                   >
                     <mat-card (click)="selectImage(i)" class="p-1">
-                      <img [src]="image.small" class="swiper-lazy" />
+                      <img [src]="image" class="swiper-lazy" />
                       <div class="swiper-lazy-preloader"></div>
                     </mat-card>
                   </div>
@@ -60,16 +60,9 @@
             <div class="product-right">
               <div class="product-details">
                 <h2>{{ product.name }}</h2>
-                <h4 *ngIf="!productsService?.catalogMode">
-                  <del>{{
-                    product.salePrice
-                      | currency: productsService?.currency:"symbol"
-                  }}</del
-                  ><span>{{ product.discount }}% off</span>
-                </h4>
                 <h3 class="price" *ngIf="!productsService?.catalogMode">
                   {{
-                    product.price | currency: productsService?.currency:"symbol"
+                    product.caption
                   }}
                 </h3>
                 <p class="text-muted description">{{ product.description }}</p>
@@ -77,11 +70,8 @@
               <div class="py-1 mt-15 mb-15">
                 <p>
                   <span class="text-muted fw-500">Avalibility: </span>
-                  <span class="avalibility" *ngIf="counter <= product.stock"
+                  <span class="avalibility"
                     ><span>In Stock</span></span
-                  >
-                  <span class="avalibility red" *ngIf="counter > product.stock"
-                    ><span>Out of Stock</span></span
                   >
                 </p>
               </div>
@@ -124,27 +114,10 @@
                       class="btn-project mr-10"
                       (click)="addToCart(product, counter)"
                     >
-                      ADD TO CARD
+                      ADD TO CART
                     </button>
                   </div>
                 </div>
-              </div>
-              <div class="social-icons">
-                <span class="text-muted fw-500">Share it: </span>
-                <ul fxLayout="row" class="social list-inline mt-15">
-                  <li>
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
@@ -527,14 +500,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="products no-bg sec-padding">
-      <div class="title">
-        <h4 class="widget-title">Featured Products</h4>
-      </div>
-      <app-product-carousel
-        [product]="products | slice: 0:6"
-      ></app-product-carousel>
     </div>
   </div>
 </div>

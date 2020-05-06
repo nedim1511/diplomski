@@ -7,9 +7,6 @@
               <mat-icon class="mat-icon-lg mat-icon material-icons">local_grocery_store</mat-icon>
               <span class="cart-count-wrapper">{{shoppingCartItems.length}}</span>
             </div>
-            <div class="top-cart">
-                <span>{{ getTotal() | async | currency:productService?.currency:'symbol' }}</span>
-            </div>
       </div>
     </button>
     <mat-menu class="spCard-main"  #menu="matMenu">
@@ -24,11 +21,11 @@
             <div class="new-product" fxLayout="column" *ngIf="shoppingCartItems.length">
               <div class="item" fxLayout="row" fxLayoutAlign="start start" *ngFor="let item of shoppingCartItems">
                   <div class="product">
-                      <img [src]="item.product.pictures[0].small" alt="">
+                      <img [src]="item.product.images[0]" alt="">
                      </div>
                     <div class="desc">
                       <p>{{item.product.name}}</p>
-                      <span>{{item.quantity}} X {{item.product.price}}</span>
+                      <span>{{item.quantity}} X {{item.product.caption}}</span>
                      </div>
                      <div class="close-circle">
                         <a (click)="removeItem(item)"><i class="material-icons">
@@ -36,11 +33,6 @@
                             </i></a>
                       </div>
               </div>
-              <mat-divider></mat-divider>
-              <div class="total" fxLayout="row" fxLayoutAlign="space-between center">
-                  <p class="text-muted">Subtotal: </p>
-                  <span>{{ getTotal() | async | currency:productService?.currency:'symbol' }}</span>
-                </div>
             </div>
       </div>
  </mat-menu>
