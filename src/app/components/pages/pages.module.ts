@@ -15,7 +15,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { BlogModule } from '../blog/blog.module';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AgmCoreModule } from '@agm/core';
-
+import { StripeModule } from "stripe-angular"
 
 @NgModule({
   imports: [
@@ -27,8 +27,8 @@ import { AgmCoreModule } from '@agm/core';
     BlogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDPM6HA96FiWhoVieMmF0T-segiya5Ytf8'
-    })
-
+    }),
+    StripeModule.forRoot("pk_test_muXZCAxgcEGharwShn9GTsOY006W2fOIbD")
   ],
   declarations: [
     CartComponent,

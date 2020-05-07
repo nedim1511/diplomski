@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Inject } from '@angular/core';
-import { Product } from 'src/app/modals/product.model';
+import { Product, ProductResponseModel } from 'src/app/modals/product.model';
 import { ProductService } from 'src/app/components/shared/services/product.service';
 import { ActivatedRoute, Params, Router, NavigationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -58,7 +58,7 @@ export class ProductDetailsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.productsService.getProducts().subscribe(product => this.products = product);
+    this.productsService.getProducts().subscribe(product => this.products = product.data);
 
     this.document.body.scrollTop = 0;
 
@@ -129,8 +129,8 @@ export class ProductDetailsComponent implements OnInit {
   getRelatedProducts() {
     this.productsService.getProducts()
       .subscribe(
-        (product: Product[]) => {
-          this.products = product
+        (data: ProductResponseModel) => {
+          this.products = data.data
         });
   }
 

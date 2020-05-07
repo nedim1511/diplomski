@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
     this.productService
       .getProducts()
       .subscribe((data: ProductResponseModel) => {
+        console.log(data);
         this.products = data.data;
       });
   }

@@ -16,7 +16,7 @@ export class ProductVerticalComponent implements OnInit {
   ngOnInit() {
     this.productService.getProducts()
     .subscribe (
-    product => this.products = product
+    product => this.products = product.data
     )
   }
 

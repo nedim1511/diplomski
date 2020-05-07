@@ -15,6 +15,6 @@ export class PopularProductsComponent implements OnInit {
    constructor(private productService: ProductService) { }
  
    ngOnInit() {
-     this.productService.getProducts().subscribe(product => this.products = product);
+     this.productService.getProducts().subscribe(product => this.products = product.data);
    }
 }
