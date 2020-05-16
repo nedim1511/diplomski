@@ -1,14 +1,13 @@
     <div class="product-item swiper-container" [swiper]="config" >
-        <div class="swiper-wrapper h-100" *ngIf="product">
-            <div *ngFor="let product of product" class="swiper-slide">
+        <div class="swiper-wrapper h-100" *ngIf="products">
+            <div *ngFor="let product of products" class="swiper-slide">
                 <mat-card fxLayout="column">
                     <div class="product-img">
                         <a class="product-link" [routerLink]="['/home/product', product.id]">
-                          <img [src]="product.images[0]" alt="">
+                          <img *ngIf="product.images && product.images.length > 0" [src]="product.images[0]" alt="">
                        </a>
                     </div>
                      <div class="product-info-wrapper">
-                        <span class="category">{{product.category}}</span>
                         <div class="title-wrap">
                            <h4>{{product.name}}</h4>
                         </div>

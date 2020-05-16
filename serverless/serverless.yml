@@ -49,6 +49,20 @@ package:
     - package.json
 
 functions:
+  editProduct:
+    handler: functions/editProduct.handler
+    events:
+      - http:
+          path: edit-product
+          method: put
+          cors: true
+  getRoutes:
+    handler: functions/getRoutes.handler
+    events:
+      - http:
+          path: routes
+          method: get
+          cors: true
   getProducts:
     handler: functions/getProducts.handler
     events:
@@ -63,3 +77,5 @@ functions:
           path: purchases
           method: post
           cors: true
+plugins:
+  - serverless-offline

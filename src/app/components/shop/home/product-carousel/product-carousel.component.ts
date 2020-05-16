@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Product } from 'src/app/modals/product.model';
-import {  SwiperDirective } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -16,12 +15,12 @@ import { WishlistService } from 'src/app/components/shared/services/wishlist.ser
 })
 export class ProductCarouselComponent implements OnInit {
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
-  @Input('product') product: Array<Product> = [];
+  @Input('product') products: Product[] = [];
   public config: SwiperConfigInterface = {};
   constructor(private dialog: MatDialog, private router: Router, private cartService: CartService, private productService: ProductService, private wishlistService: WishlistService) { }
 
   ngOnInit() {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }
   ngAfterViewInit(){
     this.config = {
@@ -32,7 +31,7 @@ export class ProductCarouselComponent implements OnInit {
       navigation: true,
       pagination: false,
       grabCursor: true,
-      loop: true,
+      loop: false,
       preloadImages: false,
       lazy: true,
       breakpoints: {

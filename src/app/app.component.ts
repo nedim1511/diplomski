@@ -256,7 +256,7 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
-    }, 5000);
+    }, 2000);
 
     this.scrollElem = document.querySelector('#moveTop');
     // this.scrollElem.scrollIntoView();

@@ -27,7 +27,7 @@ export class ProductService {
 
   private products(): Observable<ProductResponseModel> {
     return this.httpClient.get<ProductResponseModel>(
-      "https://0sfx6uyldb.execute-api.eu-central-1.amazonaws.com/dev/products"
+      "http://localhost:3000/dev/products"
     );
   }
 

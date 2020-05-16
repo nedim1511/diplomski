@@ -2,16 +2,10 @@
 <div class="home-1-wrap">
   <div class="products sec-padding">
     <div class="container">
-      <mat-tab-group>
-        <mat-tab label="FEATURED PRODUCTS">
-          <app-product-carousel
-            [product]="products | slice: 0:8"
-          ></app-product-carousel>
-        </mat-tab>
-
+      <mat-tab-group *ngIf="products">
         <mat-tab label="LATEST PRODUCTS">
           <app-product-carousel
-            [product]="products | slice: 0:14"
+            [product]="products"
           ></app-product-carousel>
         </mat-tab>
       </mat-tab-group>
