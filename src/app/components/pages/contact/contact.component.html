@@ -1,90 +1,171 @@
 <div class="contact-page sec-padding">
   <div class="container">
-      <mat-card>
+    <mat-card>
       <!-- <div class="map">
           <agm-map [latitude]="latitude" [longitude]="latitude">
             </agm-map>
       </div> -->
-      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" class="p-0">
-
-              <div fxFlex="100"   fxFlex.gt-sm="60" class="left-info-panel">
-                <div class="get-in-touch">
-                    <div class="title">
-                        <h3>Get in touch</h3>
-                    </div>
-                    <p>Send us a message and we will reply as soon possible, or visit us directly.</p>
+      <div
+        fxLayout="row"
+        fxLayout.lt-sm="column"
+        fxLayoutAlign="start start"
+        class="p-0"
+      >
+        <div fxFlex="100" fxFlex.gt-sm="60" class="left-info-panel">
+          <div class="get-in-touch">
+            <div class="title">
+              <h3>Get in touch</h3>
+            </div>
+            <p>
+              Send us a message and we will reply as soon possible, or visit us
+              directly.
+            </p>
+          </div>
+          <div class="devider"></div>
+          <div class="address">
+            <div class="title">
+              <h3>Location</h3>
+            </div>
+            <ul>
+              <li fxLayoutAlign="start center" fxLayout="row">
+                <div class="icon"><i class="material-icons">home </i></div>
+                <div class="text"><b>Address:</b> Hrasnička cesta 3a, SSST</div>
+              </li>
+            </ul>
+          </div>
+          <div class="devider"></div>
+          <div class="hours">
+            <div class="title">
+              <h3>Working hours</h3>
+            </div>
+            <ul>
+              <li fxLayoutAlign="start center" fxLayout="row">
+                <div class="icon">
+                  <i class="material-icons">query_builder </i>
                 </div>
-                <div class="devider"></div>
-               <div class="address">
-                  <div class="title">
-                      <h3>Location</h3>
-                  </div>
-                  <ul>
-                      <li fxLayoutAlign="start center" fxLayout="row">
-                         <div class="icon"><i class="material-icons">home </i></div>
-                         <div class="text"><b>Address:</b> 1234 Street Name, City Name, United States</div>
-                      </li>
-                    </ul>
-               </div>
-               <div class="devider"></div>
-               <div class="hours">
-                  <div class="title">
-                      <h3>Working hours</h3>
-                  </div>
-                  <ul>
-                      <li fxLayoutAlign="start center" fxLayout="row">
-                         <div class="icon"><i class="material-icons">query_builder </i></div>
-                         <div class="text"><b>Monday-Friday:</b> 08:00 - 22:00</div>
-                      </li>
-                      <li fxLayoutAlign="start center" fxLayout="row">
-                          <div class="icon"><i class="material-icons">query_builder</i></div>
-                          <div class="text"><b>Sutarday:</b> 08:00 - 17:00</div>
-                       </li>
-                       <li fxLayoutAlign="start center" fxLayout="row">
-                          <div class="icon"><i class="material-icons">query_builder</i></div>
-                          <div class="text"><b>Sunday:</b> Closed</div>
-                       </li>
-
-                    </ul>
-               </div>
-              </div>
-              <div fxFlex="100"   fxFlex.gt-sm="60" class="contact-form">
-
-                  <div class="title">
-                      <h3>Contact us</h3>
-                  </div>
-                  <form fxLayout="row wrap">
-                    <div  fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                        <mat-form-field class="w-100">
-                            <input matInput placeholder="Your Name (required)" #name="ngModel" ngModel name="name" required>
-                            <mat-error *ngIf="name.invalid">Please enter a valid message</mat-error>
-                          </mat-form-field>
-                    </div>
-                    <div  fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                        <mat-form-field class="w-100">
-                            <input matInput placeholder="Your Email (required)" #email="ngModel" ngModel name="email" required>
-                            <mat-error *ngIf="email.invalid">Please enter a valid message</mat-error>
-                          </mat-form-field>
-                    </div>
-                    <div  fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                        <mat-form-field class="w-100">
-                            <input matInput placeholder="Subject" #subject="ngModel" ngModel name="subject" required>
-                            <mat-error *ngIf="subject.invalid">Please enter a valid message</mat-error>
-                          </mat-form-field>
-                    </div>
-                    <div  fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                        <mat-form-field class="w-100">
-                            <textarea placeholder="Post content" matInput rows="6" ngModel name="content" required></textarea>
-                          </mat-form-field>
-                    </div>
-                    <div fxFlex="100" fxFlex.gt-sm="100" class="px-1 button-wrap" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                        <button class="btn-project" mat-raised-button color="accent" type="submit">Send</button>
-                      </div>
-                    </form>
-              </div>
-
+                <div class="text"><b>Monday-Friday:</b> 08:00 - 22:00</div>
+              </li>
+              <li fxLayoutAlign="start center" fxLayout="row">
+                <div class="icon">
+                  <i class="material-icons">query_builder</i>
+                </div>
+                <div class="text"><b>Sutarday:</b> 08:00 - 17:00</div>
+              </li>
+              <li fxLayoutAlign="start center" fxLayout="row">
+                <div class="icon">
+                  <i class="material-icons">query_builder</i>
+                </div>
+                <div class="text"><b>Sunday:</b> Closed</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div fxFlex="100" fxFlex.gt-sm="60" class="contact-form">
+          <iframe
+            id="JotFormIFrame-201363253108344"
+            title="General Inquiry Contact Form"
+            onload="window.parent.scrollTo(0,0)"
+            allowtransparency="true"
+            allowfullscreen="true"
+            allow="geolocation; microphone; camera"
+            src="https://form.jotform.com/201363253108344"
+            frameborder="0"
+            style="min-width: 100%; height: 539px; border: none;"
+            scrolling="no"
+          >
+          </iframe>
+          <script type="text/javascript">
+            var ifr = document.getElementById("JotFormIFrame-201363253108344");
+            if (
+              window.location.href &&
+              window.location.href.indexOf("?") > -1
+            ) {
+              var get = window.location.href.substr(
+                window.location.href.indexOf("?") + 1
+              );
+              if (ifr && get.length > 0) {
+                var src = ifr.src;
+                src = src.indexOf("?") > -1 ? src + "&" + get : src + "?" + get;
+                ifr.src = src;
+              }
+            }
+            window.handleIFrameMessage = function (e) {
+              if (typeof e.data === "object") {
+                return;
+              }
+              var args = e.data.split(":");
+              if (args.length > 2) {
+                iframe = document.getElementById(
+                  "JotFormIFrame-" + args[args.length - 1]
+                );
+              } else {
+                iframe = document.getElementById("JotFormIFrame");
+              }
+              if (!iframe) {
+                return;
+              }
+              switch (args[0]) {
+                case "scrollIntoView":
+                  iframe.scrollIntoView();
+                  break;
+                case "setHeight":
+                  iframe.style.height = args[1] + "px";
+                  break;
+                case "collapseErrorPage":
+                  if (iframe.clientHeight > window.innerHeight) {
+                    iframe.style.height = window.innerHeight + "px";
+                  }
+                  break;
+                case "reloadPage":
+                  window.location.reload();
+                  break;
+                case "loadScript":
+                  var src = args[1];
+                  if (args.length > 3) {
+                    src = args[1] + ":" + args[2];
+                  }
+                  var script = document.createElement("script");
+                  script.src = src;
+                  script.type = "text/javascript";
+                  document.body.appendChild(script);
+                  break;
+                case "exitFullscreen":
+                  if (window.document.exitFullscreen)
+                    window.document.exitFullscreen();
+                  else if (window.document.mozCancelFullScreen)
+                    window.document.mozCancelFullScreen();
+                  else if (window.document.mozCancelFullscreen)
+                    window.document.mozCancelFullScreen();
+                  else if (window.document.webkitExitFullscreen)
+                    window.document.webkitExitFullscreen();
+                  else if (window.document.msExitFullscreen)
+                    window.document.msExitFullscreen();
+                  break;
+              }
+              var isJotForm = e.origin.indexOf("jotform") > -1 ? true : false;
+              if (
+                isJotForm &&
+                "contentWindow" in iframe &&
+                "postMessage" in iframe.contentWindow
+              ) {
+                var urls = {
+                  docurl: encodeURIComponent(document.URL),
+                  referrer: encodeURIComponent(document.referrer),
+                };
+                iframe.contentWindow.postMessage(
+                  JSON.stringify({ type: "urls", value: urls }),
+                  "*"
+                );
+              }
+            };
+            if (window.addEventListener) {
+              window.addEventListener("message", handleIFrameMessage, false);
+            } else if (window.attachEvent) {
+              window.attachEvent("onmessage", handleIFrameMessage);
+            }
+          </script>
+        </div>
       </div>
     </mat-card>
+  </div>
 </div>
-</div>
-

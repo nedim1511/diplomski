@@ -123,7 +123,7 @@ export class ProductService {
       map((items) =>
         items.data.filter((item: Product) => {
           if (category == "all") return item;
-          else return item.url === category;
+          else return item.url == category;
         })
       )
     );

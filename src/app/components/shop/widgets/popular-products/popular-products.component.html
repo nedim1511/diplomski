@@ -6,7 +6,7 @@
       <mat-list class="reviews">
          <mat-list-item class="content"  *ngFor="let product of products | slice:0:3">
           <div class="media">  <a [routerLink]="['/home/left-sidebar/product', product.id]">
-              <img class="img-fluid" [src]="product.pictures[0].big" alt="">
+              <img class="img-fluid" [src]="product.images[0]" alt="">
             </a>
           </div>
              <div class="info align-self-center">

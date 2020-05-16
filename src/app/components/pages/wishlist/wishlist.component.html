@@ -6,9 +6,7 @@
       *ngIf="!wishlistItems.length"
     >
       <div class="row">
-        <div
-          class="col-sm-12 empty-cart-cls text-center"
-        >
+        <div class="col-sm-12 empty-cart-cls text-center">
           <img src="assets/images/backet-01.png" class="img-fluid mb-4" />
           <h4 class="mb-5"><strong>Wishlist is Empty</strong></h4>
         </div>
@@ -31,20 +29,16 @@
           <div class="mat-header-cell">Product</div>
           <div class="mat-header-cell">Name</div>
           <div class="mat-header-cell">Price</div>
-          <div class="mat-header-cell text-center">
-            <div class="px-1">
-              <button mat-raised-button color="warn">Clear All</button>
-            </div>
-          </div>
+          <div class="mat-header-cell text-center"></div>
         </div>
         <div *ngFor="let item of wishlistItems" class="mat-row">
-          <div class="mat-cell"><img [src]="item.pictures[0].big" /></div>
+          <div class="mat-cell"><img [src]="item.images[0]" /></div>
           <div class="mat-cell">
             <a [routerLink]="['/home/product', item.id]" class="product-name">{{
               item.name
             }}</a>
           </div>
-          <div class="mat-cell price">{{ item.price | number: "1.2-2" }}</div>
+          <div class="mat-cell price">{{ item.caption }}</div>
 
           <div class="mat-cell text-center">
             <div class="p-1">

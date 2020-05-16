@@ -26,6 +26,7 @@ import { BrandsComponent } from './widgets/brands/brands.component';
 import { CategoriesComponent } from './widgets/categories/categories.component';
 import { PopularProductsComponent } from './widgets/popular-products/popular-products.component';
 import { ProductZoomComponent } from './products/product-details/product-zoom/product-zoom.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -56,13 +57,11 @@ import { ProductZoomComponent } from './products/product-details/product-zoom/pr
     ReactiveFormsModule,
     FlexLayoutModule,
     NgxPaginationModule,
-    NgxImageZoomModule.forRoot() // <-- Add this line
-
+    NgxImageZoomModule.forRoot(), // <-- Add this line
   ],
   exports: [
     ProductDialogComponent,
     ProductZoomComponent
-
   ],
 
   entryComponents:[

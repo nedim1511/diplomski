@@ -6,7 +6,7 @@ import { Product } from "src/app/modals/product.model";
 @Component({
   selector: "app-product-left-sidebar",
   templateUrl: "./product-left-sidebar.component.html",
-  styleUrls: ["./product-left-sidebar.component.sass"],
+  styleUrls: ["./product-left-sidebar.component.sass"]
 })
 export class ProductLeftSidebarComponent implements OnInit {
   public sidenavOpen: boolean = true;

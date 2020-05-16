@@ -1,64 +1,13 @@
 <mat-toolbar-row fxHide fxShow.gt-sm class="container" fxLayout="row"  fxLayout.xs="row" fxLayoutAlign="space-between center">
   <div class="main-menu" fxLayout="row" fxHide fxShow.gt-sm>
       <a  mat-button class="mat-button"  [routerLink]="['/home/one']">Home</a>
-      <a [routerLink]="['/home/products/all']" routerLinkActive="router-link-active"  mat-button class="mat-button">Products</a>
-      <a  mat-button [matMenuTriggerFor]="shop" class="mat-button" (click)="openMegaMenu()">Shop<mat-icon class="caret">arrow_drop_down</mat-icon></a>
-      <mat-menu #shop="matMenu" [overlapTrigger]="false" class="app-dropdown mega-menu">
-          <div fxLayout="row wrap">
-              <div fxFlex="25" fxLayout="column" class="p-1">
-                  <a mat-menu-item routerLink="/"><b>Emergency & Exit Lights & Systems</b></a>
-                  <mat-divider></mat-divider>
-                  <a mat-menu-item routerLink="/">Central Monitoring Systems</a>
-                  <a mat-menu-item routerLink="/">Central Battery Systems</a>
-                  <a mat-menu-item routerLink="/">LED Exit Lights</a>
-                  <a mat-menu-item routerLink="/">LED Emergency Light</a>
-              </div>
-              <div fxFlex="25" class="p-1">
-                  <a mat-menu-item routerLink="/"><b>LED Lighting</b></a>
-                  <mat-divider></mat-divider>
-                  <button mat-menu-item>LED Downlights</button>
-                  <button mat-menu-item>LED Panels</button>
-                  <button mat-menu-item>LED Strips</button>
-                  <button mat-menu-item>LED Diodas</button>
-              </div>
-              <div fxFlex="25" class="p-1">
-                  <a mat-menu-item routerLink="/"><b>HVAC</b></a>
-                  <mat-divider></mat-divider>
-                  <button mat-menu-item>HVAC Valves</button>
-                  <button mat-menu-item>HVAC Valve Actuators</button>
-                  <button mat-menu-item>Heating Cables</button>
-                  <button mat-menu-item>Thermostats</button>
-              </div>
-              <div fxFlex="25" class="p-1">
-                  <a mat-menu-item routerLink="/"><b>KNX</b></a>
-                  <mat-divider></mat-divider>
-                  <button mat-menu-item>Car & Motorbike</button>
-                  <button mat-menu-item>Shop for Bike</button>
-                  <button mat-menu-item>Industrial Supplies</button>
-                  <button mat-menu-item>Cold stores</button>
-              </div>
-
-          </div>
-
-      </mat-menu>
-      <a  mat-button mat-button [matMenuTriggerFor]="blog" class="mat-button">Blog<mat-icon class="caret">arrow_drop_down</mat-icon></a>
-      <mat-menu #blog="matMenu" [overlapTrigger]="false" class="app-dropdown">
-          <a mat-menu-item [routerLink]="['/blog/blog-list']">Blog List</a>
-          <a mat-menu-item [routerLink]="['/blog/blog-column']">Blog Columns</a>
-          <a mat-menu-item [routerLink]="['/blog/blog-details']">Blog Details</a>
-
-      </mat-menu>
+      <a [routerLink]="['/home/products/all']" routerLinkActive="router-link-active"  mat-button class="mat-button">Products</a>      
       <a  mat-button [matMenuTriggerFor]="pages" class="mat-button">Pages<mat-icon class="caret">arrow_drop_down</mat-icon></a>
       <mat-menu #pages="matMenu" [overlapTrigger]="false" class="app-dropdown">
-        <a [routerLink]="['/pages/about']" mat-menu-item>About Us</a>
-        <a mat-menu-item [routerLink]="['/pages/faq']" >FAQ</a>
-        <a mat-menu-item [routerLink]="['/pages/contact']">Contact</a>
         <a mat-menu-item [routerLink]="['/pages/wishlist']">Wishlist</a>
         <a mat-menu-item [routerLink]="['/pages/compare']">Compare</a>
         <a mat-menu-item [routerLink]="['/pages/checkout']">Checkout</a>
         <a mat-menu-item [routerLink]="['/pages/cart']">Cart</a>
-        <a mat-menu-item [routerLink]="['/pages/my-account']">My Account</a>
-        <a mat-menu-item [routerLink]="['/pages/error']">404</a>
     </mat-menu>
       <a [routerLink]="['/pages/contact']" routerLinkActive="router-link-active"   mat-button class="mat-button">Contact</a>
     </div>

@@ -12,20 +12,15 @@ export class HomeComponent implements OnInit {
   public banners = [];
   public slides = [
     {
-      title: "THE BEST CHOICE IS HERE",
-      subtitle: "New Arrivals On Sale",
-      image: "assets/images/carousel/banner1.jpg",
+      title: "GET YOUR GRASS A HAIRCUT",
+      subtitle: "Don't worry, she will grow a new one",
+      image: "assets/images/carousel/cover-1.jpg",
     },
     {
-      title: "Biggest discount",
-      subtitle: "Check the promotion",
-      image: "assets/images/carousel/banner1.jpg",
-    },
-    {
-      title: "Biggest sale",
-      subtitle: "Dont miss it",
-      image: "assets/images/carousel/banner1.jpg",
-    },
+      title: "SLEEP LIKE ON CLOUDS",
+      subtitle: "You know you need it. Yes...",
+      image: "assets/images/carousel/cover-2.jpg",
+    }
   ];
 
   constructor(private productService: ProductService) {}
