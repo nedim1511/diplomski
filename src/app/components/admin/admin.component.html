@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="cart-wrapper sec-padding">
+    <div
+      fxLayout="column"
+      fxLayoutAlign="space-around center"
+      *ngIf="!items.length"
+    >
+      <div class="row">
+        <div class="col-sm-12 empty-cart-cls text-center">
+          <h4 class="mb-5"><strong>Waiting for products to load...</strong></h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="col-12 col-md-6" style="display: inline-block;">
+        <h2>All Products</h2>
+      </div>
+      <div class="col-12 col-md-6" style="display: inline-block; float: right;">
+        <a
+          [routerLink]="['/admin/add-product']"
+          routerLinkActive="router-link-active"
+          mat-raised-button
+          class="btn-project"
+          >Add New Product</a
+        >
+      </div>
+    </div>
+
+    <mat-card *ngIf="items.length" class="p-0">
+      <div class="mat-table cart-table">
+        <div class="mat-header-row">
+          <div class="mat-header-cell">Product</div>
+          <div class="mat-header-cell">Name</div>
+          <div class="mat-header-cell">Price</div>
+          <div class="mat-header-cell text-center"></div>
+        </div>
+        <div *ngFor="let item of items" class="mat-row">
+          <div class="mat-cell"><img [src]="item.images[0]" /></div>
+          <div class="mat-cell">
+            <a [routerLink]="['/home/product', item.id]" class="product-name">{{
+              item.name
+            }}</a>
+          </div>
+          <div class="mat-cell price">{{ item.caption }}</div>
+
+          <div class="mat-cell text-center">
+            <div class="p-1">
+              <mat-icon class="pen" (click)="editItem(item)">edit</mat-icon>
+              <mat-icon class="close" (click)="removeItem(item)" style="color: red"
+                >close</mat-icon
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

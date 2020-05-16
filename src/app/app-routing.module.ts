@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { MainComponent } from './components/main/main.component';
-import { HomeComponent } from './components/shop/home/home.component';
 
 
 const appRoutes: Routes = [
@@ -21,6 +19,10 @@ const appRoutes: Routes = [
   {
     path: 'blog',
     loadChildren: () => import('./components/blog/blog.module').then(m => m.BlogModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: '**',
