@@ -74,7 +74,6 @@ export class CheckoutComponent implements OnInit {
         )
         .subscribe((res: any) => {
           if (res && res.message) {
-            // Sweet Alert
             // @ts-ignore
             Swal.fire({
               title: "Thank you!",

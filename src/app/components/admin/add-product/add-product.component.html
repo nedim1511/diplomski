@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="checkout sec-padding">
+    <div fxLayout="row wrap" class="">
+      <div class="billing-details pr-15" fxFlex="100">
+        <div class="header-title">
+          <h2>Add Product</h2>
+        </div>
+
+        <form fxLayout="row wrap">
+          <div
+            fxFlex="100"
+            fxFlex.gt-sm="50"
+            class="mt-20 pr-5"
+            ngClass.sm="mt-10"
+            ngClass.xs="mt-10"
+          >
+            <mat-form-field class="w-100">
+              <input
+                matInput
+                placeholder="Name"
+                [(ngModel)]="name"
+                name="name"
+                class="pr-5"
+              />
+            </mat-form-field>
+          </div>
+          <div
+            fxFlex="100"
+            fxFlex.gt-sm="50"
+            class="mt-20 pl-5"
+            ngClass.sm="mt-10"
+            ngClass.xs="mt-10"
+          >
+            <mat-form-field class="w-100">
+              <input
+                matInput
+                type="number"
+                placeholder="Price in KM"
+                [(ngModel)]="price"
+                name="price"
+              />
+            </mat-form-field>
+          </div>
+          <div
+            fxFlex="100"
+            fxFlex.gt-sm="50"
+            class="mt-20"
+            ngClass.sm="mt-10"
+            ngClass.xs="mt-10"
+          >
+            <mat-form-field class="w-100">
+              <textarea
+                matInput
+                placeholder="Description"
+                [(ngModel)]="description"
+                name="description"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div
+            fxFlex="100"
+            fxFlex.gt-md="50"
+            fxFlex.md="50"
+            class="pl-5 mt-20"
+            ngClass.sm="mt-10"
+            ngClass.xs="mt-10"
+            style="text-align: center;"
+          >
+            <div class="slike" style="display: flex; justify-content: center; align-items:center">
+                <img *ngFor="let url of imageUrls" alt="Uploded image" width="100" [src]="url" />
+            </div>
+            <button id="upload_widget" class="cloudinary-button">
+              Upload files
+            </button>
+          </div>
+          <div
+            fxFlex="100"
+            fxFlex.gt-md="50"
+            fxFlex.md="50"
+            class="pl-5 mt-20"
+            ngClass.sm="mt-10"
+            ngClass.xs="mt-10"
+            style="text-align: center;"
+          >
+            <div class="order">
+              <button
+                class="btn-project"
+                mat-raised-button
+                color="accent"
+                type="submit"
+                (click)="save()"
+              >
+                Save Product
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,10 +5,12 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { GridModule } from '@angular/flex-layout';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
-    AdminComponent
+    AdminComponent,
+    AddProductComponent
   ],
   imports: [
     CommonModule,
