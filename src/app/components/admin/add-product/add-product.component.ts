@@ -12,6 +12,7 @@ export class AddProductComponent implements OnInit {
   name: string;
   caption: string;
   description: string;
+  category: string;
 
   constructor() {}
 
@@ -45,8 +46,7 @@ export class AddProductComponent implements OnInit {
   save() {
     if (this.clientValidation()) {
       this.caption = this.price.toLocaleString('en-GB') + ' KM';
-      alert(this.caption);
-      console.log(this.imageUrls);
+      // Add Product
     }
   }
 

@@ -7,6 +7,7 @@ const routes: Routes = [
     {
       path: "",
       children: [
+        { path: '', redirectTo: 'all-products' },
         { path: "all-products", component: AdminComponent },
         { path: "add-product", component: AddProductComponent }
       ],

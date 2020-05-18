@@ -2,7 +2,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 module.exports.handler = (event, context, callback) => {
     return stripe.products.list(
-        {limit: 100}).then((products) => {
+        {limit: 100, active: true}).then((products) => {
       const response = {
         statusCode: 200,
         headers: {

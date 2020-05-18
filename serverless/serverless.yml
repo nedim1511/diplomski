@@ -49,6 +49,13 @@ package:
     - package.json
 
 functions:
+  deleteProduct:
+    handler: functions/deleteProduct.handler
+    events:
+      - http:
+          path: delete-product
+          method: delete
+          cors: true
   editProduct:
     handler: functions/editProduct.handler
     events:
