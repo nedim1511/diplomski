@@ -72,7 +72,7 @@ export class CheckoutComponent implements OnInit {
         const tokenToSend = { id: token.id, email: this.email, ime: this.name };
         this.http
           .post(
-            "http://localhost:3000/dev/purchases",
+            "https://0sfx6uyldb.execute-api.eu-central-1.amazonaws.com/dev/purchases",
             {
               token: tokenToSend,
               order: {

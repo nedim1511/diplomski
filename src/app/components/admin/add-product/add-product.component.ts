@@ -69,7 +69,7 @@ export class AddProductComponent implements OnInit {
       params = params.set("images", imageUrl);
       params = params.set("url", this.category);
       this.http
-        .post("http://localhost:3000/dev/add-product", null, { params: params })
+        .post("https://0sfx6uyldb.execute-api.eu-central-1.amazonaws.com/dev/add-product", null, { params: params })
         .subscribe(
           (res) => {
             this.location.back();

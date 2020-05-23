@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
 
   removeItem(item: Product) {
     if (confirm("Are you sure you want to delete this item?")) {
-      this.http.delete("http://localhost:3000/dev/delete-product?id=" + item.id).subscribe(() => {
+      this.http.delete("https://0sfx6uyldb.execute-api.eu-central-1.amazonaws.com/dev/delete-product?id=" + item.id).subscribe(() => {
         this.items = [];
         this.loadProducts();
       });
