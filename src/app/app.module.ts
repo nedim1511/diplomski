@@ -10,6 +10,7 @@ import { MainComponent } from "./components/main/main.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { ShopModule } from "./components/shop/shop.module";
 import { SharedModule } from "./components/shared/shared.module";
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [AppComponent, MainComponent],
@@ -25,7 +26,7 @@ import { SharedModule } from "./components/shared/shared.module";
     AppRoutingModule,
     NgxImgZoomModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

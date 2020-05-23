@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { NgxSpinnerService } from "ngx-spinner";
 import { SidenavMenu } from "./components/shared/sidebar/sidebar-menu.model";
 import { Router, NavigationEnd } from "@angular/router";
+import { MixpanelService } from "./components/shared/services/mixpanel.service";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: "app-root",
@@ -27,7 +29,12 @@ export class AppComponent implements OnInit {
   title = "ecommerce-sophia-new";
   scrollElem;
 
-  constructor(private spinner: NgxSpinnerService, public router: Router) {
+  constructor(
+    private spinner: NgxSpinnerService,
+    private mixpanelService: MixpanelService,
+    public router: Router,
+    private cookiesService: CookieService
+  ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.url = event.url;
@@ -40,6 +47,11 @@ export class AppComponent implements OnInit {
         document.body.scrollTop = 0; // scroll top to body element
       }
     });
+    const uuid = this.cookiesService.get("uuid");
+    if (!uuid) {
+      this.mixpanelService.generateUserUuidAndStoreToCookies();
+    }
+    this.mixpanelService.init(this.cookiesService.get("uuid"));
   }
 
   navItems: SidenavMenu[] = [

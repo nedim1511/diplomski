@@ -4,6 +4,8 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { CartItem } from "src/app/modals/cart-item";
 import { map } from "rxjs/operators";
 import { Observable, BehaviorSubject, Subscriber } from "rxjs";
+import { MixpanelService } from "./mixpanel.service";
+import { Location } from "@angular/common";
 
 // Get product from Localstorage
 let products = JSON.parse(localStorage.getItem("cartItem")) || [];
@@ -16,7 +18,11 @@ export class CartService {
   public cartItems: BehaviorSubject<CartItem[]> = new BehaviorSubject([]);
   public observer: Subscriber<{}>;
 
-  constructor(public snackBar: MatSnackBar) {
+  constructor(
+    public snackBar: MatSnackBar,
+    private location: Location,
+    private mixPanelService: MixpanelService
+  ) {
     this.cartItems.subscribe((products) => (products = products));
   }
 
@@ -47,6 +53,11 @@ export class CartService {
             verticalPosition: "top",
             duration: 3000,
           });
+          this.mixPanelService.track("add-to-cart", {
+            product: product.name,
+            quantity: quantity,
+            hasAlreadyThisOneInCart: true
+          });
         }
         return true;
       }
@@ -62,6 +73,11 @@ export class CartService {
         panelClass: [status],
         verticalPosition: "top",
         duration: 3000,
+      });
+      this.mixPanelService.track("add-to-cart", {
+        product: product.name,
+        quantity: quantity,
+        hasAlreadyThisOneInCart: false
       });
     }
 

@@ -7,6 +7,7 @@ import { StripeToken, StripeSource } from "stripe-angular";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
+import { MixpanelService } from '../../shared/services/mixpanel.service';
 
 @Component({
   selector: "app-checkout",
@@ -33,7 +34,8 @@ export class CheckoutComponent implements OnInit {
     public productService: ProductService,
     private http: HttpClient,
     private router: Router,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private mixPanelService: MixpanelService
   ) {}
 
   ngOnInit() {
@@ -61,6 +63,12 @@ export class CheckoutComponent implements OnInit {
     if (this.clientValidation()) {
       if (token) {
         this.spinner.show();
+        // Send MixPanel event
+        this.mixPanelService.track("place-order", {
+          email: this.email,
+          name: this.name,
+          total: this.total
+        });
         const tokenToSend = { id: token.id, email: this.email, ime: this.name };
         this.http
           .post(

@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Product, ProductResponseModel } from "src/app/modals/product.model";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { map } from "rxjs/operators";
+import { MixpanelService } from './mixpanel.service';
 
 // Get product from Localstorage
 let products = JSON.parse(localStorage.getItem("compareItem")) || [];
@@ -21,7 +22,11 @@ export class ProductService {
   public compareProducts: BehaviorSubject<Product[]> = new BehaviorSubject([]);
   public observer: Subscriber<{}>;
 
-  constructor(private httpClient: HttpClient, public snackBar: MatSnackBar) {
+  constructor(
+    private httpClient: HttpClient,
+    public snackBar: MatSnackBar,
+    private mixPanelService: MixpanelService
+  ) {
     this.compareProducts.subscribe((products) => (products = products));
   }
 
@@ -104,6 +109,9 @@ export class ProductService {
       });
     }
     localStorage.setItem("compareItem", JSON.stringify(products));
+    this.mixPanelService.track("add-to-compare", {
+      product: product.name,
+    });
     return item;
   }
 
@@ -115,6 +123,9 @@ export class ProductService {
     const index = products.indexOf(product);
     products.splice(index, 1);
     localStorage.setItem("compareItem", JSON.stringify(products));
+    this.mixPanelService.track("remove-from-compare", {
+      product: product.name,
+    });
   }
 
   // Get Products By category
