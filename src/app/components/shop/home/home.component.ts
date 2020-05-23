@@ -26,13 +26,10 @@ export class HomeComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.productService.getBanners().subscribe((data) => (this.banners = data));
-
     this.productService
       .getProducts()
       .subscribe((data: ProductResponseModel) => {
         this.products = data.data;
-        console.log(this.products);
       });
   }
 }

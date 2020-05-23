@@ -1,25 +1,30 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Inject } from '@angular/core';
-import { Product, ProductResponseModel } from 'src/app/modals/product.model';
-import { ProductService } from 'src/app/components/shared/services/product.service';
-import { ActivatedRoute, Params, Router, NavigationEnd } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { CartService } from 'src/app/components/shared/services/cart.service';
-import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { ProductZoomComponent } from './product-zoom/product-zoom.component';
-import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
-import { DOCUMENT } from '@angular/common';
-
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Output,
+  EventEmitter,
+  Inject,
+} from "@angular/core";
+import { Product, ProductResponseModel } from "src/app/modals/product.model";
+import { ProductService } from "src/app/components/shared/services/product.service";
+import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
+import { CartService } from "src/app/components/shared/services/cart.service";
+import { SwiperDirective, SwiperConfigInterface } from "ngx-swiper-wrapper";
+import { ProductZoomComponent } from "./product-zoom/product-zoom.component";
+import { ProductDialogComponent } from "../product-dialog/product-dialog.component";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
-  selector: 'app-product-details',
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.sass']
+  selector: "app-product-details",
+  templateUrl: "./product-details.component.html",
+  styleUrls: ["./product-details.component.sass"],
 })
 export class ProductDetailsComponent implements OnInit {
-
   public config: SwiperConfigInterface = {};
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
-  @ViewChild('zoomViewer', { static: true }) zoomViewer;
+  @ViewChild("zoomViewer", { static: true }) zoomViewer;
   @ViewChild(SwiperDirective, { static: true }) directiveRef: SwiperDirective;
 
   public product: Product;
@@ -33,48 +38,55 @@ export class ProductDetailsComponent implements OnInit {
   index: number;
   bigProductImageIndex = 0;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private route: ActivatedRoute, public productsService: ProductService, public dialog: MatDialog, private router: Router, private cartService: CartService) {
-    this.route.params.subscribe(params => {
-      const id = params['id'];
-      this.productsService.getProduct(id).subscribe(product => {
-        this.product = product
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private route: ActivatedRoute,
+    public productsService: ProductService,
+    public dialog: MatDialog,
+    private router: Router,
+    private cartService: CartService
+  ) {
+    this.route.params.subscribe((params) => {
+      const id = params["id"];
+      this.productsService.getProduct(id).subscribe((product) => {
+        this.product = product;
       });
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     });
 
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     });
 
-    this.router.events.subscribe(evt => {
+    this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
         document.body.scrollTop = 0; // scroll top to body element
       }
     });
   }
 
-
   ngOnInit() {
-    this.productsService.getProducts().subscribe(product => this.products = product.data);
+    this.productsService
+      .getProducts()
+      .subscribe((product) => (this.products = product.data));
 
     this.document.body.scrollTop = 0;
 
     this.getRelatedProducts();
-
   }
 
   public slideNavConfig = {
     vertical: false,
     slidesToShow: 3,
     slidesToScroll: 1,
-    asNavFor: '.product-slick',
+    asNavFor: ".product-slick",
     arrows: false,
     dots: false,
-    focusOnSelect: true
-  }
+    focusOnSelect: true,
+  };
   ngAfterViewInit() {
     this.config = {
       observer: true,
@@ -89,7 +101,7 @@ export class ProductDetailsComponent implements OnInit {
       lazy: true,
       breakpoints: {
         480: {
-          slidesPerView: 1
+          slidesPerView: 1,
         },
         740: {
           slidesPerView: 2,
@@ -100,21 +112,13 @@ export class ProductDetailsComponent implements OnInit {
         1280: {
           slidesPerView: 3,
         },
-
-
-      }
-    }
+      },
+    };
   }
-
 
   public selectImage(index) {
-    console.log(this.product)
-    console.log(index)
     this.bigProductImageIndex = index;
   }
-
-
-
 
   public increment() {
     this.counter += 1;
@@ -127,23 +131,22 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getRelatedProducts() {
-    this.productsService.getProducts()
-      .subscribe(
-        (data: ProductResponseModel) => {
-          this.products = data.data
-        });
+    this.productsService
+      .getProducts()
+      .subscribe((data: ProductResponseModel) => {
+        this.products = data.data;
+      });
   }
 
   public openProductDialog(product, bigProductImageIndex) {
-    let dialogRef = this.dialog.open(ProductZoomComponent,
-      {
-      data: {product, index: bigProductImageIndex},
+    let dialogRef = this.dialog.open(ProductZoomComponent, {
+      data: { product, index: bigProductImageIndex },
 
-      panelClass: 'product-dialog',
+      panelClass: "product-dialog",
     });
-    dialogRef.afterClosed().subscribe(product => {
+    dialogRef.afterClosed().subscribe((product) => {
       if (product) {
-        this.router.navigate(['/products', product.id, product.name]);
+        this.router.navigate(["/products", product.id, product.name]);
       }
     });
   }
@@ -156,12 +159,9 @@ export class ProductDetailsComponent implements OnInit {
 
   // Add to cart
   public buyNow(product: Product, quantity) {
-    if (quantity > 0)
-      this.cartService.addToCart(product, parseInt(quantity));
-    this.router.navigate(['/pages/checkout']);
+    if (quantity > 0) this.cartService.addToCart(product, parseInt(quantity));
+    this.router.navigate(["/pages/checkout"]);
   }
-
-
 
   public onMouseMove(e) {
     if (window.innerWidth >= 1280) {
@@ -169,14 +169,14 @@ export class ProductDetailsComponent implements OnInit {
       image = e.currentTarget;
       offsetX = e.offsetX;
       offsetY = e.offsetY;
-      x = offsetX / image.offsetWidth * 100;
-      y = offsetY / image.offsetHeight * 100;
+      x = (offsetX / image.offsetWidth) * 100;
+      y = (offsetY / image.offsetHeight) * 100;
       zoomer = this.zoomViewer.nativeElement.children[0];
       if (zoomer) {
-        zoomer.style.backgroundPosition = x + '% ' + y + '%';
+        zoomer.style.backgroundPosition = x + "% " + y + "%";
         zoomer.style.display = "block";
-        zoomer.style.height = image.height + 'px';
-        zoomer.style.width = image.width + 'px';
+        zoomer.style.height = image.height + "px";
+        zoomer.style.width = image.width + "px";
       }
     }
   }
@@ -188,12 +188,7 @@ export class ProductDetailsComponent implements OnInit {
   public openZoomViewer() {
     this.dialog.open(ProductZoomComponent, {
       data: this.zoomImage,
-      panelClass: 'zoom-dialog'
+      panelClass: "zoom-dialog",
     });
   }
-
-
-
 }
-
-

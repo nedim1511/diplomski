@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -78,6 +79,7 @@ import { InfoBarComponent } from './info-bar/info-bar.component';
     MatDividerModule,
     MatCardModule,
     FlexLayoutModule,
+    NgxSpinnerModule
   ],
   exports: [
     CommonModule,

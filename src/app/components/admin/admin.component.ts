@@ -25,13 +25,12 @@ export class AdminComponent implements OnInit {
       .getProducts()
       .subscribe((data: ProductResponseModel) => {
         this.items = data.data;
+        console.log(this.items);
       });
   }
 
   removeItem(item: Product) {
     if (confirm("Are you sure you want to delete this item?")) {
-      // First remove a product's SKU
-      
       this.http.delete("http://localhost:3000/dev/delete-product?id=" + item.id).subscribe(() => {
         this.items = [];
         this.loadProducts();

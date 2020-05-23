@@ -6,6 +6,7 @@ import { ProductService } from "../../shared/services/product.service";
 import { StripeToken, StripeSource } from "stripe-angular";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-checkout",
@@ -21,17 +22,18 @@ export class CheckoutComponent implements OnInit {
   city: string;
   postal_code: string;
   total = 0;
-  orderList: { type: string; parent: string }[] = [];
+  orderList: any[] = [];
 
   amount: number;
-  payments: string[] = ["Create an Account?", "Flat Rate"];
+  payments: string[] = ["Free Shipping"];
   paymantWay: string[] = ["Direct Bank Transfer", "PayPal"];
 
   constructor(
     private cartService: CartService,
     public productService: ProductService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -41,8 +43,13 @@ export class CheckoutComponent implements OnInit {
       this.orderList.push({
         type: "sku",
         parent: product.product.attributes[0],
+        quantity: product.quantity,
       });
-      this.total += +product.product.caption.slice(0, 6).replace(",", "");
+      this.total +=
+        +product.product.caption
+          .substr(0, product.product.caption.indexOf(" "))
+          .split(",")
+          .join("") * product.quantity;
     });
   }
 
@@ -51,49 +58,107 @@ export class CheckoutComponent implements OnInit {
   }
 
   setStripeToken(token: StripeToken) {
-    if (token) {
-      const tokenToSend = { id: token.id, email: this.email };
-      this.http
-        .post(
-          "https://0sfx6uyldb.execute-api.eu-central-1.amazonaws.com/dev/purchases",
-          {
-            token: tokenToSend,
-            order: {
-              currency: "BAM",
-              items: this.orderList,
-              shipping: {
-                name: this.name,
-                address: {
-                  line1: this.line1,
-                  city: this.city,
-                  postal_code: this.postal_code,
+    if (this.clientValidation()) {
+      if (token) {
+        this.spinner.show();
+        const tokenToSend = { id: token.id, email: this.email, ime: this.name };
+        this.http
+          .post(
+            "http://localhost:3000/dev/purchases",
+            {
+              token: tokenToSend,
+              order: {
+                currency: "BAM",
+                items: this.orderList,
+                shipping: {
+                  name: this.name,
+                  address: {
+                    line1: this.line1,
+                    city: this.city,
+                    postal_code: this.postal_code,
+                  },
                 },
               },
-            },
-          }
-        )
-        .subscribe((res: any) => {
-          if (res && res.message) {
-            // @ts-ignore
-            Swal.fire({
-              title: "Thank you!",
-              text: "Order successfully processed.",
-              icon: "success",
-              showCancelButton: false,
-              confirmButtonColor: "#3085d6",
-              confirmButtonText: "Okay",
-            }).then((result) => {
-              if (result.value) {
-                this.cartService.clearCart();
-                this.router.navigate(["/"]);
+            }
+          )
+          .subscribe(
+            (res: any) => {
+              if (res && res.message) {
+                this.spinner.hide();
+                // @ts-ignore
+                Swal.fire({
+                  title: "Thank you!",
+                  text: "Order successfully processed.",
+                  icon: "success",
+                  showCancelButton: false,
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "Okay",
+                }).then((result) => {
+                  if (result.value) {
+                    this.cartService.clearCart();
+                    this.router.navigate(["/"]);
+                  }
+                });
+              } else {
+                this.spinner.hide();
               }
-            });
-          }
-        });
+            },
+            (error) => {
+              console.log(error);
+              this.spinner.hide();
+            }
+          );
+      }
     }
   }
 
   setStripeSource(source: StripeSource) {
     console.log("Stripe source", source);
+  }
+
+  private clientValidation(): boolean {
+    let isValid = true;
+    if (!this.name || this.name == "") {
+      // @ts-ignore
+      Swal.fire({
+        title: "Oops",
+        text: "Please enter your name",
+        icon: "error",
+      });
+      isValid = false;
+    } else if (!this.email || this.email == "") {
+      // @ts-ignore
+      Swal.fire({
+        title: "Oops",
+        text: "Please enter your email address",
+        icon: "error",
+      });
+      isValid = false;
+    } else if (!this.line1) {
+      // @ts-ignore
+      Swal.fire({
+        title: "Oops",
+        text: "Please enter your address",
+        icon: "error",
+      });
+      isValid = false;
+    } else if (!this.city) {
+      // @ts-ignore
+      Swal.fire({
+        title: "Oops",
+        text: "Please enter your city name",
+        icon: "error",
+      });
+      isValid = false;
+    } else if (!this.postal_code) {
+      // @ts-ignore
+      Swal.fire({
+        title: "Oops",
+        text: "Please enter your postal code",
+        icon: "error",
+      });
+      isValid = false;
+    }
+    return isValid;
   }
 }

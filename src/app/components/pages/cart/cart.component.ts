@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
       this.shoppingCartItems = shoppingCartItems;
       let amount = 0;
       this.shoppingCartItems.forEach((item) => {
-        amount += +(item.product.caption.slice(0, 6).replace(",", ""));
+        amount += (+item.product.caption.substr(0, item.product.caption.indexOf(" ")).split(",").join("") * item.quantity);
       });
       this.total = amount;
     });
@@ -34,14 +34,14 @@ export class CartComponent implements OnInit {
 
   // Increase Product Quantity
   public increment(product: any, quantity: number = 1) {
-    this.total += +(product.caption.slice(0, 6).replace(",", ""));
+    this.total += +product.caption.substr(0, product.caption.indexOf(" ")).split(",").join("")
     this.cartService.updateCartQuantity(product, quantity);
   }
 
   // Decrease Product Quantity
   public decrement(product: any, quantity: number = -1) {
-    if (this.total - +(product.caption.slice(0, 6).replace(",", "")) > 0) {
-      this.total -= +(product.caption.slice(0, 6).replace(",", ""));
+    if (this.total - +product.caption.substr(0, product.caption.indexOf(" ")).split(",").join("")) {
+      this.total -= +product.caption.substr(0, product.caption.indexOf(" ")).split(",").join("");
       this.cartService.updateCartQuantity(product, quantity);
     }
   }

@@ -30,7 +30,7 @@
     "ngx-image-zoom": "^0.4.1",
     "ngx-img-zoom": "^3.3.3",
     "ngx-pagination": "^4.0.0",
-    "ngx-spinner": "^8.0.3",
+    "ngx-spinner": "^8.1.0",
     "ngx-swiper-wrapper": "^8.0.0",
     "rxjs": "^6.5.4",
     "stripe-angular": "^1.0.2",

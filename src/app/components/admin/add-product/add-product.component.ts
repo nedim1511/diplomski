@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { HttpParams, HttpClient } from "@angular/common/http";
+import { Location } from "@angular/common";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-add-product",
@@ -14,7 +17,11 @@ export class AddProductComponent implements OnInit {
   description: string;
   category: string;
 
-  constructor() {}
+  constructor(
+    private http: HttpClient,
+    private location: Location,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {
     this.createUploadWidget();
@@ -45,8 +52,34 @@ export class AddProductComponent implements OnInit {
 
   save() {
     if (this.clientValidation()) {
-      this.caption = this.price.toLocaleString('en-GB') + ' KM';
-      // Add Product
+      this.spinner.show();
+      this.caption = this.price.toLocaleString("en-GB") + " KM";
+      let imageUrl = "";
+      let params = new HttpParams();
+      params = params.set("name", this.name);
+      params = params.set("caption", this.caption);
+      params = params.set("price", this.price.toString());
+      params = params.set("description", this.description);
+      this.imageUrls.forEach((url, index) => {
+        if (index > 0) {
+          imageUrl += ",";
+        }
+        imageUrl += url;
+      });
+      params = params.set("images", imageUrl);
+      params = params.set("url", this.category);
+      this.http
+        .post("http://localhost:3000/dev/add-product", null, { params: params })
+        .subscribe(
+          (res) => {
+            this.location.back();
+            this.spinner.hide();
+          },
+          (error) => {
+            console.log(error);
+            this.spinner.hide();
+          }
+        );
     }
   }
 
@@ -73,6 +106,22 @@ export class AddProductComponent implements OnInit {
       Swal.fire({
         title: "Oops",
         text: "Please enter a product price",
+        icon: "error",
+      });
+      isValid = false;
+    } else if (!this.category) {
+      // @ts-ignore
+      Swal.fire({
+        title: "Oops",
+        text: "Please enter a product category",
+        icon: "error",
+      });
+      isValid = false;
+    } else if (this.imageUrls.length === 0) {
+      // @ts-ignore
+      Swal.fire({
+        title: "Oops",
+        text: "Please add at least one image",
         icon: "error",
       });
       isValid = false;
