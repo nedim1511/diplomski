@@ -66,10 +66,26 @@
             ngClass.xs="mt-10"
             style="text-align: center;"
           >
-            <div class="slike" style="display: flex; justify-content: center; align-items:center">
-                <img *ngFor="let url of imageUrls" alt="Uploded image" width="100" [src]="url" />
+            <div
+              class="slike"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <img
+                *ngFor="let url of imageUrls"
+                alt="Uploded image"
+                width="100"
+                [src]="url"
+              />
             </div>
-            <button id="upload_widget" class="cloudinary-button" style="margin-top: 20px;">
+            <button
+              id="upload_widget"
+              class="cloudinary-button"
+              style="margin-top: 20px;"
+            >
               Upload files
             </button>
           </div>
@@ -80,15 +96,26 @@
             ngClass.sm="mt-10"
             ngClass.xs="mt-10"
           >
-            <mat-form-field class="w-100">
-              <input
-                matInput
-                placeholder="Category"
-                [(ngModel)]="category"
-                name="category"
-                class="pr-5"
-              />
-            </mat-form-field>
+            <div class="pr-5">
+              <mat-form-field>
+                <mat-label>Category</mat-label>
+                <mat-select
+                  name="category"
+                  id="category"
+                  [(ngModel)]="category"
+                >
+                  <mat-option value="kuca">
+                    Home
+                  </mat-option>
+                  <mat-option value="dvoriste">
+                    Garden
+                  </mat-option>
+                  <mat-option value="vozila">
+                    Vehicles
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
           <div
             fxFlex="100"

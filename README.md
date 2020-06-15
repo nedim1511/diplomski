@@ -1,4 +1,4 @@
-# EcommerceSophiaNew
+# E-commerce Serverless Thesis Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
 
@@ -6,9 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Backend
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Everything is in the cloud. Just run the project and enjoy :)
 
 ## Build
 
@@ -24,4 +24,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+If you have any questions, you may ask me during my thesis defense or at nedim.kurbegovic@stu.ssst.edu.ba
